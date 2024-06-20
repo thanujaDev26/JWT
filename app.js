@@ -1,17 +1,23 @@
 const express = require('express');
-const user = require('./routers/user');
-const student = require('./routers/student');
-const auth = require('./middleware/auth');
+const cors = require('cors');
+
 require('dotenv').config();
+
+//Router
+let userRouter = require('./routers/user')
+const studentRouter = require('./routers/student');
+
 
 const app = express();
 
-
+//Middleware
 app.use(express.json());
-app.use('/api/user',user);
-app.use('/api/student',auth,student);
+app.use(cors());
+const auth = require('./middleware/auth');
 
 
-const port = process.env.PORT || 3000;
+app.use('/api/user',userRouter);
+app.use('/api/student',auth,studentRouter);
 
-app.listen(port,()=>console.log(`App is running on port ${port}`));
+
+module.exports = app;
