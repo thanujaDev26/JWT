@@ -1,11 +1,8 @@
 const express = require('express');
-const res = require('express/lib/response');
 const userController = require('../controllers/users')
-const jwt =require('jsonwebtoken');
 require('dotenv').config();
-
-
 const router = express.Router();
+
 
 
 router.route('/login')
@@ -16,5 +13,8 @@ router.route('/token')
 
 router.route('/logout')
     .delete(userController.getUserLogout);
+
+router.route('/signup')
+    .post(userController.getUserSignup)
 
 module.exports = router
