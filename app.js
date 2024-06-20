@@ -6,11 +6,10 @@ require('dotenv').config();
 
 const app = express();
 
+
 app.use(express.json());
-
 app.use('/api/user',user);
-app.use('/api/student',auth,student) ;
-
+app.use('/api/student',auth,student);
 
 
 const port = process.env.PORT || 3000;
