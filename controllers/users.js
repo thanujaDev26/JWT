@@ -4,7 +4,7 @@ let User = require('../models/user');
 
 exports.getUserLogin = async (req,res)=>{
     try {
-        let userToFind = await User.findOne({email:req.body.email});
+        let userToFind = await User.findOne({email:req.body.email, password: req.body.password});
         const user= req.body;
         const accessToken=jwt.sign(user,process.env.TOKEN_KEY,{expiresIn: '10s'});
         const refreshToken= jwt.sign(user,process.env.RE_TOKEN_KEY,{expiresIn: '24h'});
